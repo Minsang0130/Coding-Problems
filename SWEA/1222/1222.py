@@ -12,6 +12,22 @@ def postfix_natation_plus(string_num, arr):
             result.append(num1 + num2)
     return result[0] + int(arr[len(arr)-1])
 
+def postfix_natation(string_num, arr):
+
+    def stack_push(i):
+
+
+class Stack:
+    def __init__(self):
+        self.stack = []
+
+    def push(self, item):
+        self.stack.append(item)
+
+    def pop(self):
+
+    # def peek(self):
+
 for test_case in range(1, 11):
     n = int(input())
     input_str = list(input())
