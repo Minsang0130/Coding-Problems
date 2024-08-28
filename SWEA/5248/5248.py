@@ -22,7 +22,8 @@ def union(x, y):
             p[px] = py
         else:
             p[py] = px
-            union(x, y)
+            # 자식들에게 부모의 값을 주기 위해 했지만 자식들 전부에게 갱신이 안됨
+            # union(x, y)
             rank[px] += 1
 
 for test_case in range(1, T+1):
@@ -34,12 +35,15 @@ for test_case in range(1, T+1):
     for i in range(1, N+1):
         make_set(i)
     
-    for i in range(0, len(arr), 2):
-        union(arr[i], arr[i+1])
-        print(p)
+    for i in range(M):
+        union(arr[i * 2], arr[i*2 +1])
+        # print(p)
         # print(rank)
-        print('----')
+        # print('----')
 
+    # p의 모든 값에 부모들을 갱신
+    for i in range(1, N + 1):
+        p[i] = find_set(p[i])
     p = set(p)
     # print(p)
     print(f'#{test_case} {len(p) - 1}')
