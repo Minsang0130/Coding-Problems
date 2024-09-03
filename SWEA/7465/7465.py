@@ -10,7 +10,7 @@ def find_parent(x):
 
 def union(x, y):
     px = find_parent(x)
-    py = find_parent(y)
+    py = find_parent(y)``
 
     if px != py:
         if px < py:
