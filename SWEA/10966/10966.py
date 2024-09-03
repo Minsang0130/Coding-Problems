@@ -10,7 +10,7 @@ def solution(visited):
     result = 0
 
     for i in range(n):
-        for j in range((len(arr[i]))):
+        for j in range(M):
             if arr[i][j] == 'W':
                 q.append((i,j))
                 visited[i][j] = 0
@@ -22,10 +22,12 @@ def solution(visited):
         
         for dx, dy in dxy:
             nx, ny = cx + dx, cy + dy
-            if 0<= nx < M and 0 <= ny < N:
-                if visited[nx][ny] == -1:
-                    q.append((nx, ny))
-                    visited[nx][ny] = visited[cx][cy] + 1
+            if 0 > nx or nx >= N or 0 > ny or ny >= M: continue
+
+            if visited[nx][ny] != -1: continue
+
+            q.append((nx, ny))
+            visited[nx][ny] = visited[cx][cy] + 1
     
     for i in range(n):
         for j in range((len(arr[i]))):
@@ -41,5 +43,4 @@ for test_case in range(1, T+1):
     visited = [[-1] * M for _ in range(N)]
 
     
-    print(solution(visited))
-    print(visited)
+    print(f'#{test_case} {solution(visited)}')
