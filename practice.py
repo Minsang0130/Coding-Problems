@@ -1,56 +1,55 @@
-class MaxHeap:
-    def __init__(self):
-        self.heap = []
+#5248 그룹 나누기
 
-    def heappush(self, item):
-        self.heap.append(item)
-        self._siftup(len(self.heap) -1 )
+# 부모노드 탐색 함수
+def find_root(x):
+    if x == p_lst[x]:
+        return x
+    else:
+        p_lst[x]=find_root(p_lst[x])
+        return p_lst[x]
 
-    def heappop(self):
-        if len(self.heap) == 0:
-            raise IndexError("힙이 비었습니다.")
-        if len(self.heap) == 1:
-            return self.haep[0]
-        root = self.heap[0]
-        self.heap[0] = self.heap.pop()
-        self._sitdown(0)
-        return root
+# 합집합 함수
+def union(x,y):
+    px=find_root(x)
+    py=find_root(y)
 
-    def heapify(self, array):
-        self.heap = array[:]
-        n = len(array)
-        for i in range(n // 2 -1, -1, -1):
-            self._sitdown(i)
-
-    def _siftup(self, idx):
-        parent = (idx - 1) // 2
-        while idx > 0 and self.heap[idx] > self.heap[parent]:
-            self.heap[idx], self.heap[parent] = self.heap[parent], self.heap[idx]
-            idx = parent
-            parent = (idx - 1) // 2
-
-    def _siftdown(self, idx):
-        n = len(self.heap)
-        largest = idx
-        left = 2 * idx + 1
-        right = 2 * idx + 2
-
-        if left < n and self.heap[left] > self.heap[largest]:
-            largest = left
-        if right < n and self.heap[right] > self.heap[largest]:
-            largest = right
-        if largest != idx:
-            self.heap[idx], self.heap[largest] = self.heap[largest], self.heap[idx]
-            self._siftup(largest)
-
-    def __str__(self):
-        return str(self.heap)
+    if px > py:
+        p_lst[px]=py
+    else:
+        p_lst[py]=px
 
 
-my_heap = MaxHeap()
-my_heap.heappush(1)
-my_heap.heappush(3)
-my_heap.heappush(2)
-my_heap.heappush(-2)
+# main
+T=int(input())
+for tc in range(1,T+1):
+    # N:노드 개수, M:쌍 개수, lst:입력 리스트, p_lst:루트노드 저장 리스트 
+    N,M=map(int,input().split())
+    lst=list(map(int,input().split()))
+    p_lst=[0]*(N+1)
 
-print(my_heap)
+    # 부모노드 자기 자신으로 초기화
+    for i in range(N+1):
+        p_lst[i]=i
+
+    # 그룹핑
+    idx=0
+    for _ in range(M):
+        union(lst[idx],lst[idx+1])
+        print(lst[idx], lst[idx+1])
+        print(p_lst)
+        idx+=2
+
+    # 결국 원하는건 그룹의 개수
+    # 그룹의 개수 => 대표자의 개수
+    for i in range(1, N+1):
+        p_lst[i] = find_root(i)
+
+    # 자신 인덱스가 부모 노드값이라면, 루트이므로 cnt+1
+    cnt=0
+    for i in range(1,N+1):
+        if i==p_lst[i]:
+            cnt+=1
+        
+
+    print('부모 리스트 결과',p_lst)
+    #print(f'#{tc}',cnt)

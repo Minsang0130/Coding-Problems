@@ -7,7 +7,7 @@ def solution(arr, rotation_num):
     temp_idx = 0
     while rotation_num > 0:
         temp_idx = arr[:].index(min(arr))
-        print(temp_idx)
+        # print(temp_idx)
         if max(arr) == arr[idx]:
             arr[idx], arr[temp_idx] = arr[temp_idx], arr[idx]
             rotation_num -= 1
