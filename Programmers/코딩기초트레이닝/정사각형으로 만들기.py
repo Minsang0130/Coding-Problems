@@ -4,4 +4,13 @@ def solution(arr):
         return arr
 
     elif len(arr) > len(arr[0]):
+        for i in range(len(arr)):
+            arr[i][i].append(0)
 
+    else:
+        arr.append([0] * len(arr[0]))
+
+    return arr
+
+
+print(solution([[[572, 22, 37], [287, 726, 384], [85, 137, 292], [487, 13, 876]]]))
