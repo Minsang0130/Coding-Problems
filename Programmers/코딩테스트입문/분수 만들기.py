@@ -1,3 +1,6 @@
+import math
+
+
 def solution(numer1, denom1, numer2, denom2):
     if denom1 % denom2 == 0:
         m_num = denom1 // denom2
@@ -15,7 +18,10 @@ def solution(numer1, denom1, numer2, denom2):
         denom2 *= denom1
 
     numer, denom = numer1 + numer2, denom1
-    if numer == denom:
-        return [1, 1]
-    else:
-        return [numer, denom]
+
+    # 기약분수로 변환
+    gcd = math.gcd(numer, denom)  # 최대공약수
+    numer //= gcd
+    denom //= gcd
+
+    return [numer, denom]
