@@ -1,2 +1,3 @@
-def solution () {
+def solution (n) {
+  n % 5
 }
