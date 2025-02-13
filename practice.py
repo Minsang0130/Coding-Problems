@@ -13,7 +13,7 @@ def union(x,y):
     px=find_root(x)
     py=find_root(y)
 
-    if px > py:
+    if px >= py:
         p_lst[px]=py
     else:
         p_lst[py]=px
