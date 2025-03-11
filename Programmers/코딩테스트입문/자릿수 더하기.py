@@ -1,2 +1,6 @@
 def solution(n):
-  return sum(n_list)
+    result = 0
+    n_list = list(str(n))
+    for i in n_list:
+        result += int(i)
+    return result
