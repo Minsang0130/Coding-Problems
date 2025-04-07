@@ -3,7 +3,7 @@
 # 부모노드 탐색 함수
 def find_root(x):
     if x == p_lst[x]:
-        return x
+        return x + 1
     else:
         p_lst[x]=find_root(p_lst[x])
         return p_lst[x]
@@ -13,7 +13,7 @@ def union(x,y):
     px=find_root(x)
     py=find_root(y)
 
-    if px > py:
+    if px >= py:
         p_lst[px]=py
     else:
         p_lst[py]=px
