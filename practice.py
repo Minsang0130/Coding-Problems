@@ -3,8 +3,7 @@
 # 부모노드 탐색 함수
 def find_root(x):
     if x == p_lst[x]:
-        return x +1
-
+        return x
     else:
         p_lst[x]=find_root(p_lst[x])
         return p_lst[x]
